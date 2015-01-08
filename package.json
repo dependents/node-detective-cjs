@@ -23,10 +23,12 @@
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-cjs",
   "devDependencies": {
-    "mocha": "~2.0.1"
+    "mocha": "~2.0.1",
+    "sinon": "~1.12.2"
   },
   "dependencies": {
     "ast-module-types": "~2.2.1",
+    "escodegen": "~1.5.0",
     "node-source-walk": "~1.4.0"
   }
 }
