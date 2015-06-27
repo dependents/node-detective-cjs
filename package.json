@@ -14,7 +14,8 @@
     "detective",
     "commonjs",
     "dependencies",
-    "ast"
+    "ast",
+    "static analysis"
   ],
   "author": "Joel Kemp <joel@mrjoelkemp.com>",
   "license": "MIT",
@@ -29,6 +30,6 @@
   "dependencies": {
     "ast-module-types": "~2.2.1",
     "escodegen": "~1.5.0",
-    "node-source-walk": "~1.4.0"
+    "node-source-walk": "~2.0.0"
   }
 }
