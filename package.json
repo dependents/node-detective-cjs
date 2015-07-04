@@ -28,8 +28,8 @@
     "sinon": "~1.12.2"
   },
   "dependencies": {
-    "ast-module-types": "~2.2.1",
-    "escodegen": "~1.5.0",
-    "node-source-walk": "~2.0.0"
+    "ast-module-types": "^2.2.1",
+    "escodegen": "^1.5.0",
+    "node-source-walk": "^2.0.0"
   }
 }
