@@ -58,4 +58,10 @@ describe('detective-cjs', function() {
     assert.ok(escodegen.generate.called);
     escodegen.generate.restore();
   });
+
+  it('does not throw on jsx', function() {
+    assert.doesNotThrow(function() {
+      detective('var a = require("./foo" + "bar"); var templ = <jsx />');
+    });
+  });
 });
