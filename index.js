@@ -3,7 +3,6 @@ var types = require('ast-module-types');
 var escodegen = require('escodegen');
 
 /**
- * [exports description]
  * @param  {String|Object} content - A file's string content or its AST
  * @return {String[]} The file's dependencies
  */
@@ -17,13 +16,17 @@ module.exports = function(content) {
   walker.walk(content, function(node) {
     var dependency;
 
-    if (!types.isRequire(node) || !node.arguments || !node.arguments.length) { return; }
+    if (!types.isRequire(node) ||
+        !node.arguments ||
+        !node.arguments.length) {
+      return;
+    }
 
     if (node.arguments[0].type === 'Literal') {
-        dependency = node.arguments[0].value;
+      dependency = node.arguments[0].value;
 
     } else {
-        dependency = escodegen.generate(node.arguments[0]);
+      dependency = escodegen.generate(node.arguments[0]);
     }
 
     dependencies.push(dependency);
