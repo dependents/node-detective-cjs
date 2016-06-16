@@ -1,7 +1,6 @@
 var assert = require('assert');
 var detective = require('../');
 var sinon = require('sinon');
-var escodegen = require('escodegen');
 
 describe('detective-cjs', function() {
   var ast = {
@@ -52,16 +51,9 @@ describe('detective-cjs', function() {
     assert.equal(deps[0], './a');
   });
 
-  it('calls escodegen generate for non-literal require arguments (#1)', function() {
-    sinon.spy(escodegen, 'generate');
-    detective('var a = require("./foo" + "bar");');
-    assert.ok(escodegen.generate.called);
-    escodegen.generate.restore();
-  });
-
   it('does not throw on jsx', function() {
     assert.doesNotThrow(function() {
-      detective('var a = require("./foo" + "bar"); var templ = <jsx />');
+      detective('var a = require("./foobar"); var templ = <jsx />');
     });
   });
 });
