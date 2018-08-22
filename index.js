@@ -22,6 +22,9 @@ module.exports = function(content) {
     if (node.arguments[0].type === 'Literal' || node.arguments[0].type === 'StringLiteral') {
       dependency = node.arguments[0].value;
       dependencies.push(dependency);
+    } else if (node.arguments[0].type === 'TemplateLiteral') {
+      dependency = node.arguments[0].quasis[0].value.raw;
+      dependencies.push(dependency);
     }
   });
 
