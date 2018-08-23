@@ -36,8 +36,8 @@ describe('detective-cjs', function() {
   });
 
   it('supports es6', function() {
-    var deps = detective('const a = require("./a");\n let b = require("./b");');
-    assert.equal(deps.length, 2);
+    var deps = detective('const a = require("./a");\n let b = require("./b");\n var c = require(`./c`);');
+    assert.equal(deps.length, 3);
   });
 
   it('returns an empty list if there are no dependencies', function() {
