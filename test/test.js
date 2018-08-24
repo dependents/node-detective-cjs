@@ -35,11 +35,6 @@ describe('detective-cjs', function() {
     assert.equal(deps.length, 2);
   });
 
-  it('supports es6', function() {
-    var deps = detective('const a = require("./a");\n let b = require("./b");\n var c = require(`./c`);');
-    assert.equal(deps.length, 3);
-  });
-
   it('returns an empty list if there are no dependencies', function() {
     var deps = detective('1 + 1;');
     assert.equal(deps.length, 0);
@@ -54,6 +49,18 @@ describe('detective-cjs', function() {
   it('does not throw on jsx', function() {
     assert.doesNotThrow(function() {
       detective('var a = require("./foobar"); var templ = <jsx />');
+    });
+  });
+
+  describe('es6', function() {
+    it('supports es6 syntax', function() {
+      var deps = detective('const a = require("./a");\n let b = require("./b");');
+      assert.equal(deps.length, 2);
+    });
+
+    it('supports template literals', function() {
+      var deps = detective('const a = require("./a");\n let b = require("./b");\n var c = require(`./c`);');
+      assert.equal(deps.length, 3);
     });
   });
 });
