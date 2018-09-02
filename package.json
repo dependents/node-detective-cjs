@@ -25,6 +25,9 @@
     "url": "https://github.com/mrjoelkemp/node-detective-cjs/issues"
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-cjs",
+  "engines": {
+    "node": ">= 6.0"
+  },
   "devDependencies": {
     "jscs": "~2.4.0",
     "jscs-preset-mrjoelkemp": "~1.0.0",
