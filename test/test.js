@@ -1,9 +1,9 @@
-var assert = require('assert');
-var detective = require('../');
-var sinon = require('sinon');
+const assert = require('assert');
+const detective = require('../');
+const sinon = require('sinon');
 
 describe('detective-cjs', function() {
-  var ast = {
+  const ast = {
     type: 'Program',
     body: [{
       type: 'VariableDeclaration',
@@ -31,17 +31,17 @@ describe('detective-cjs', function() {
   };
 
   it('returns the dependencies of a commonjs module', function() {
-    var deps = detective('var a = require("./a");\n var b = require("./b");');
+    const deps = detective('var a = require("./a");\n var b = require("./b");');
     assert.equal(deps.length, 2);
   });
 
   it('returns an empty list if there are no dependencies', function() {
-    var deps = detective('1 + 1;');
+    const deps = detective('1 + 1;');
     assert.equal(deps.length, 0);
   });
 
   it('accepts an AST', function() {
-    var deps = detective(ast);
+    const deps = detective(ast);
     assert.equal(deps.length, 1);
     assert.equal(deps[0], './a');
   });
@@ -54,12 +54,12 @@ describe('detective-cjs', function() {
 
   describe('es6', function() {
     it('supports es6 syntax', function() {
-      var deps = detective('const a = require("./a");\n let b = require("./b");');
+      const deps = detective('const a = require("./a");\n let b = require("./b");');
       assert.equal(deps.length, 2);
     });
 
     it('supports template literals', function() {
-      var deps = detective('const a = require("./a");\n let b = require("./b");\n var c = require(`./c`);');
+      const deps = detective('const a = require("./a");\n let b = require("./b");\n var c = require(`./c`);');
       assert.equal(deps.length, 3);
     });
   });

@@ -25,14 +25,17 @@
     "url": "https://github.com/mrjoelkemp/node-detective-cjs/issues"
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-cjs",
+  "engines": {
+    "node": ">= 6.0"
+  },
   "devDependencies": {
     "jscs": "~2.4.0",
     "jscs-preset-mrjoelkemp": "~1.0.0",
-    "mocha": "~2.0.1",
-    "sinon": "~1.12.2"
+    "mocha": "^5.2.0",
+    "sinon": "^6.1.5"
   },
   "dependencies": {
     "ast-module-types": "^2.3.2",
-    "node-source-walk": "^3.0.0"
+    "node-source-walk": "^4.0.0"
   }
 }
