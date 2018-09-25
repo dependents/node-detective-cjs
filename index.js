@@ -19,14 +19,25 @@ module.exports = function(content) {
       return;
     }
 
-    if (node.arguments[0].type === 'Literal' || node.arguments[0].type === 'StringLiteral') {
-      const dependency = node.arguments[0].value;
-      dependencies.push(dependency);
-    } else if (node.arguments[0].type === 'TemplateLiteral') {
-      const dependency = node.arguments[0].quasis[0].value.raw;
-      dependencies.push(dependency);
+    if (types.isPlainRequire(node)) {
+      dependencies.push(extractDependencyFromRequire(node));
+    } else if (types.isMainScopedRequire(node)) {
+      dependencies.push(extractDependencyFromMainRequire(node));
     }
+
   });
 
   return dependencies;
 };
+
+function extractDependencyFromRequire(node) {
+  if (node.arguments[0].type === 'Literal' || node.arguments[0].type === 'StringLiteral') {
+    return node.arguments[0].value;
+  } else if (node.arguments[0].type === 'TemplateLiteral') {
+    return node.arguments[0].quasis[0].value.raw;
+  }
+}
+
+function extractDependencyFromMainRequire(node) {
+  return node.arguments[0].value;
+}
