@@ -35,6 +35,14 @@ describe('detective-cjs', function() {
     assert.equal(deps.length, 2);
   });
 
+  it('returns the dependencies of a main require cjs module', function() {
+    const deps = detective('var a = require("./a");\n var b = require.main.require("./b");');
+
+    assert.equal(deps[0], './a');
+    assert.equal(deps[1], './b');
+    assert.equal(deps.length, 2);
+  });
+
   it('returns an empty list if there are no dependencies', function() {
     const deps = detective('1 + 1;');
     assert.equal(deps.length, 0);
