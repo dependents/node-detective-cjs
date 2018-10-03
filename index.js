@@ -20,7 +20,10 @@ module.exports = function(content) {
     }
 
     if (types.isPlainRequire(node)) {
-      dependencies.push(extractDependencyFromRequire(node));
+      const result = extractDependencyFromRequire(node);
+      if (result) {
+        dependencies.push(result);
+      }
     } else if (types.isMainScopedRequire(node)) {
       dependencies.push(extractDependencyFromMainRequire(node));
     }
