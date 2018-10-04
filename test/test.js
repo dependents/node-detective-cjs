@@ -43,6 +43,13 @@ describe('detective-cjs', function() {
     assert.equal(deps.length, 2);
   });
 
+  it('does exclude requires based on variable values', function() {
+    const deps = detective('var a = require("./a");\n var b = "foo" + ".js";;\n var c = require(b);');
+
+    assert.equal(deps[0], './a');
+    assert.equal(deps.length, 1);
+  });
+
   it('returns an empty list if there are no dependencies', function() {
     const deps = detective('1 + 1;');
     assert.equal(deps.length, 0);
