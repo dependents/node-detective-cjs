@@ -1,8 +1,10 @@
-#### detective-cjs [![npm](http://img.shields.io/npm/v/detective-cjs.svg)](https://npmjs.org/package/detective-cjs) [![npm](http://img.shields.io/npm/dm/detective-cjs.svg)](https://npmjs.org/package/detective-cjs)
+#### detective-cjs [![CI](https://github.com/dependents/detective-cjs/actions/workflows/ci.yml/badge.svg)](https://github.com/dependents/detective-cjs/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/detective-cjs)](https://www.npmjs.com/package/detective-cjs) [![npm](https://img.shields.io/npm/dm/detective-cjs)](https://www.npmjs.com/package/detective-cjs)
 
 > Get the dependencies of an CommonJS module
 
-`npm install detective-cjs`
+```sh
+npm install detective-cjs
+```
 
 But dude, substack already built this: node-detective. Yes, but I needed the capability to reuse an AST
 and this was unlikely to be merged timely. I can also support jsx and other syntactic constructs faster.
@@ -10,16 +12,15 @@ and this was unlikely to be merged timely. I can also support jsx and other synt
 ### Usage
 
 ```js
-var detective = require('detective-cjs');
+const detective = require('detective-cjs');
 
-var mySourceCode = fs.readFileSync('myfile.js', 'utf8');
+const mySourceCode = fs.readFileSync('myfile.js', 'utf8');
 
 // Pass in a file's content or an AST
-var dependencies = detective(mySourceCode);
-
+const dependencies = detective(mySourceCode);
 ```
 
-* Supports JSX, ES7, and any other features that [node-source-walk](https://github.com/mrjoelkemp/node-source-walk) supports.
+* Supports JSX, ES7, and any other features that [node-source-walk](https://github.com/dependents/node-source-walk) supports.
 
 #### License
 
