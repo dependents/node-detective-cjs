@@ -1,6 +1,6 @@
 #### detective-cjs [![CI](https://github.com/dependents/node-detective-cjs/actions/workflows/ci.yml/badge.svg)](https://github.com/dependents/node-detective-cjs/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/detective-cjs)](https://www.npmjs.com/package/detective-cjs) [![npm](https://img.shields.io/npm/dm/detective-cjs)](https://www.npmjs.com/package/detective-cjs)
 
-> Get the dependencies of an CommonJS module
+> Get the dependencies of a CommonJS module by traversing its AST
 
 ```sh
 npm install detective-cjs
