@@ -1,4 +1,4 @@
-#### detective-cjs [![CI](https://github.com/dependents/node-detective-cjs/actions/workflows/ci.yml/badge.svg)](https://github.com/dependents/node-detective-cjs/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/detective-cjs)](https://www.npmjs.com/package/detective-cjs) [![npm](https://img.shields.io/npm/dm/detective-cjs)](https://www.npmjs.com/package/detective-cjs)
+### detective-cjs [![CI](https://img.shields.io/github/workflow/status/dependents/node-detective-cjs/CI/main?label=CI&logo=github)](https://github.com/dependents/node-detective-cjs/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-cjs)](https://www.npmjs.com/package/detective-cjs) [![npm](https://img.shields.io/npm/dm/detective-cjs)](https://www.npmjs.com/package/detective-cjs)
 
 > Get the dependencies of a CommonJS module by traversing its AST
 
@@ -12,6 +12,7 @@ and this was unlikely to be merged timely. I can also support jsx and other synt
 ### Usage
 
 ```js
+const fs = require('fs');
 const detective = require('detective-cjs');
 
 const mySourceCode = fs.readFileSync('myfile.js', 'utf8');
