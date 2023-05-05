@@ -1,7 +1,7 @@
 'use strict';
 
-const Walker = require('node-source-walk');
 const types = require('ast-module-types');
+const Walker = require('node-source-walk');
 
 /**
  * @param  {String|Object} content - A file's string content or its AST
@@ -11,7 +11,7 @@ module.exports = function(content) {
   const walker = new Walker();
   const dependencies = [];
 
-  walker.walk(content, (node) => {
+  walker.walk(content, node => {
     if (!types.isRequire(node) || !node.arguments || node.arguments.length === 0) {
       return;
     }
