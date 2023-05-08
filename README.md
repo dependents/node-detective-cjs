@@ -1,7 +1,7 @@
 # detective-cjs
 
 [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-cjs/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-cjs/actions/workflows/ci.yml?query=branch%3Amain)
-[![npm version](https://img.shields.io/npm/v/detective-cjs)](https://www.npmjs.com/package/detective-cjs)
+[![npm version](https://img.shields.io/npm/v/detective-cjs?logo=npm&logoColor=fff)](https://www.npmjs.com/package/detective-cjs)
 [![npm downloads](https://img.shields.io/npm/dm/detective-cjs)](https://www.npmjs.com/package/detective-cjs)
 
 > Get the dependencies of a CommonJS module by traversing its AST
