@@ -1,6 +1,6 @@
 {
   "name": "detective-cjs",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Get the dependencies of a CommonJS module by traversing its AST",
   "main": "index.js",
   "files": [
