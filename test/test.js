@@ -70,6 +70,15 @@ describe('detective-cjs', () => {
     });
   });
 
+  it('skipLazyLoaded only counts top-level requires', () => {
+    const fnWithDynamicRequire = 'function foo() { const a = require("./a"); }';
+    const deps1 = detective(fnWithDynamicRequire);
+    assert.equal(deps1.length, 1);
+
+    const deps2 = detective(fnWithDynamicRequire, { skipLazyLoaded: true });
+    assert.equal(deps2.length, 0);
+  });
+
   describe('es6', () => {
     it('supports es6 syntax', () => {
       const deps = detective('const a = require("./a");\n let b = require("./b");');
