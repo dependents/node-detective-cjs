@@ -7,7 +7,7 @@ const Walker = require('node-source-walk');
  * @param  {String|Object} content - A file's string content or its AST
  * @return {String[]} The file's dependencies
  */
-module.exports = function(content) {
+module.exports = function(content, options = {}) {
   const walker = new Walker();
   const dependencies = [];
 
@@ -17,9 +17,11 @@ module.exports = function(content) {
     }
 
     if (types.isPlainRequire(node)) {
-      const result = extractDependencyFromRequire(node);
-      if (result) {
-        dependencies.push(result);
+      if (!options.skipLazyLoaded || (options.skipLazyLoaded && types.isTopLevelRequire(node))) {
+        const result = extractDependencyFromRequire(node);
+        if (result) {
+          dependencies.push(result);
+        }
       }
     } else if (types.isMainScopedRequire(node)) {
       dependencies.push(extractDependencyFromMainRequire(node));
