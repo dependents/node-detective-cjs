@@ -23,6 +23,10 @@ const mySourceCode = fs.readFileSync('myfile.js', 'utf8');
 
 // Pass in a file's content or an AST
 const dependencies = detective(mySourceCode);
+
+// Use skipLazyLoaded to only include top-level requires,
+// treating inline (lazy-loaded) requires as intentional and legal
+const topLevelOnly = detective(mySourceCode, { skipLazyLoaded: true });
 ```
 
 * Supports JSX, ES7, and any other features that [node-source-walk](https://github.com/dependents/node-source-walk) supports.
