@@ -21,7 +21,7 @@ module.exports = function(content, options = {}) {
     }
 
     if (types.isPlainRequire(node)) {
-      if (!options.skipLazyLoaded || (options.skipLazyLoaded && types.isTopLevelRequire(node))) {
+      if (!options.skipLazyLoaded || types.isTopLevelRequire(node)) {
         const result = extractDependencyFromRequire(node);
         if (result) {
           dependencies.push(result);
