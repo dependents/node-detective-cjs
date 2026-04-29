@@ -4,7 +4,7 @@ const types = require('ast-module-types');
 const Walker = require('node-source-walk');
 
 /**
- * @param  {String|Object} [content] - A file's string content or its AST
+ * @param  {String|Object} content - A file's string content or its AST
  * @return {String[]} The file's dependencies
  */
 module.exports = function(content, options = {}) {
