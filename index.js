@@ -9,7 +9,7 @@ const Walker = require('node-source-walk');
  */
 module.exports = function(content, options = {}) {
   // TODO: uncomment for next major version and adapt tests
-  // if (src === undefined) throw new Error('src not given');
+  // if (content === undefined) throw new Error('content not given');
   if (content === '' || content === undefined) return [];
 
   const walker = new Walker();

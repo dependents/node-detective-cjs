@@ -89,8 +89,8 @@ test('supports template literals', () => {
   assert.equal(deps.length, 3);
 });
 
-test.skip('throws if src is not given', () => {
-  assert.throws(() => detective(), /^Error: src not given$/);
+test.skip('throws if content is not given', () => {
+  assert.throws(() => detective(), /^Error: content not given$/);
 });
 
 test('returns an empty list for an empty string', () => {
@@ -99,7 +99,7 @@ test('returns an empty list for an empty string', () => {
 
 // Silent empty behaviour is preserved until the next major version.
 // See TODO in index.js.
-test('returns empty list when src is undefined', () => {
+test('returns empty list when content is undefined', () => {
   assert.deepEqual(detective(undefined), []);
 });
 
