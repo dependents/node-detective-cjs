@@ -5,11 +5,12 @@ const Walker = require('node-source-walk');
 
 /**
  * @param  {String|Object} content - A file's string content or its AST
+ * @param  {boolean} [options.skipLazyLoaded] - Whether to skip requires that are not top-level (i.e. inside a function)
  * @return {String[]} The file's dependencies
  */
 module.exports = function(content, options = {}) {
   // TODO: uncomment for next major version and adapt tests
-  // if (src === undefined) throw new Error('src not given');
+  // if (content === undefined) throw new Error('content not given');
   if (content === '' || content === undefined) return [];
 
   const walker = new Walker();
