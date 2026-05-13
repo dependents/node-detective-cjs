@@ -9,9 +9,8 @@ const Walker = require('node-source-walk');
  * @return {String[]} The file's dependencies
  */
 module.exports = function(content, options = {}) {
-  // TODO: uncomment for next major version and adapt tests
-  // if (content === undefined) throw new Error('content not given');
-  if (content === '' || content === undefined) return [];
+  if (content === undefined) throw new Error('content not given');
+  if (content === '') return [];
 
   const walker = new Walker();
   const dependencies = [];
