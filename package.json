@@ -2,7 +2,10 @@
   "name": "detective-cjs",
   "version": "6.1.1",
   "description": "Get the dependencies of a CommonJS module by traversing its AST",
-  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
   "files": [
     "index.js"
   ],
@@ -33,7 +36,7 @@
   },
   "homepage": "https://github.com/dependents/node-detective-cjs",
   "engines": {
-    "node": ">=20"
+    "node": ">=20.19.0 || >=22.12.0"
   },
   "dependencies": {
     "ast-module-types": "^6.0.1",
