@@ -1,4 +1,9 @@
-import types from 'ast-module-types';
+import {
+  isRequire,
+  isPlainRequire,
+  isTopLevelRequire,
+  isMainScopedRequire
+} from 'ast-module-types';
 import Walker from 'node-source-walk';
 
 /**
@@ -13,18 +18,18 @@ export default function detective(content, options = {}) {
   const dependencies = [];
 
   walker.walk(content, node => {
-    if (!types.isRequire(node) || !node.arguments || node.arguments.length === 0) {
+    if (!isRequire(node) || !node.arguments || node.arguments.length === 0) {
       return;
     }
 
-    if (types.isPlainRequire(node)) {
-      if (!options.skipLazyLoaded || types.isTopLevelRequire(node)) {
+    if (isPlainRequire(node)) {
+      if (!options.skipLazyLoaded || isTopLevelRequire(node)) {
         const result = extractDependencyFromRequire(node);
         if (result) {
           dependencies.push(result);
         }
       }
-    } else if (types.isMainScopedRequire(node)) {
+    } else if (isMainScopedRequire(node)) {
       dependencies.push(extractDependencyFromMainRequire(node));
     }
   });
