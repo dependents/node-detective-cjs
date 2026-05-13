@@ -1,14 +1,17 @@
-'use strict';
-
-const types = require('ast-module-types');
-const Walker = require('node-source-walk');
+import {
+  isRequire,
+  isPlainRequire,
+  isTopLevelRequire,
+  isMainScopedRequire
+} from 'ast-module-types';
+import Walker from 'node-source-walk';
 
 /**
  * @param  {String|Object} content - A file's string content or its AST
  * @param  {boolean} [options.skipLazyLoaded] - Whether to skip requires that are not top-level (i.e. inside a function)
  * @return {String[]} The file's dependencies
  */
-module.exports = function(content, options = {}) {
+export default function detective(content, options = {}) {
   if (content === undefined) throw new Error('content not given');
   if (content === '') return [];
 
@@ -16,24 +19,24 @@ module.exports = function(content, options = {}) {
   const dependencies = [];
 
   walker.walk(content, node => {
-    if (!types.isRequire(node) || !node.arguments || node.arguments.length === 0) {
+    if (!isRequire(node) || !node.arguments || node.arguments.length === 0) {
       return;
     }
 
-    if (types.isPlainRequire(node)) {
-      if (!options.skipLazyLoaded || types.isTopLevelRequire(node)) {
+    if (isPlainRequire(node)) {
+      if (!options.skipLazyLoaded || isTopLevelRequire(node)) {
         const result = extractDependencyFromRequire(node);
         if (result) {
           dependencies.push(result);
         }
       }
-    } else if (types.isMainScopedRequire(node)) {
+    } else if (isMainScopedRequire(node)) {
       dependencies.push(extractDependencyFromMainRequire(node));
     }
   });
 
   return dependencies;
-};
+}
 
 function extractDependencyFromRequire(node) {
   const arg = node.arguments[0];
