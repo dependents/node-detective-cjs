@@ -38,7 +38,7 @@ test('returns the dependencies of a commonjs module', () => {
   assert.equal(deps.length, 2);
 });
 
-test('returns the dependencies of a main require cjs module', () => {
+test('returns the dependencies of a main require CJS module', () => {
   const deps = detective('var a = require("./a");\n var b = require.main.require("./b");');
 
   assert.equal(deps[0], './a');
@@ -46,7 +46,7 @@ test('returns the dependencies of a main require cjs module', () => {
   assert.equal(deps.length, 2);
 });
 
-test('does exclude requires based on variable values', () => {
+test('excludes requires based on variable values', () => {
   const deps = detective('var a = require("./a");\n var b = "foo" + ".js";;\n var c = require(b);');
 
   assert.equal(deps[0], './a');
@@ -64,13 +64,13 @@ test('accepts an AST', () => {
   assert.equal(deps[0], './a');
 });
 
-test('does not throw on jsx', () => {
+test('does not throw on JSX', () => {
   assert.doesNotThrow(() => {
     detective('var a = require("./foobar"); var templ = <jsx />');
   });
 });
 
-test('skipLazyLoaded only counts top-level requires', () => {
+test('only counts top-level requires when skipLazyLoaded is enabled', () => {
   const fnWithDynamicRequire = 'function foo() { const a = require("./a"); }';
   const deps1 = detective(fnWithDynamicRequire);
   assert.equal(deps1.length, 1);
@@ -79,7 +79,7 @@ test('skipLazyLoaded only counts top-level requires', () => {
   assert.equal(deps2.length, 0);
 });
 
-test('supports es6 syntax', () => {
+test('supports ES6 syntax', () => {
   const deps = detective('const a = require("./a");\n let b = require("./b");');
   assert.equal(deps.length, 2);
 });
@@ -93,7 +93,7 @@ test.skip('throws if src is not given', () => {
   assert.throws(() => detective(), /^Error: src not given$/);
 });
 
-test('returns empty list for empty string', () => {
+test('returns an empty list for an empty string', () => {
   assert.deepEqual(detective(''), []);
 });
 
