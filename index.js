@@ -38,13 +38,9 @@ export default function detective(content, options = {}) {
 }
 
 function extractDependencyFromRequire(node) {
-  if (node.arguments[0].type === 'Literal' || node.arguments[0].type === 'StringLiteral') {
-    return node.arguments[0].value;
-  }
-
-  if (node.arguments[0].type === 'TemplateLiteral') {
-    return node.arguments[0].quasis[0].value.raw;
-  }
+  const arg = node.arguments[0];
+  if (arg.type === 'Literal' || arg.type === 'StringLiteral') return arg.value;
+  if (arg.type === 'TemplateLiteral') return arg.quasis[0].value.raw;
 }
 
 function extractDependencyFromMainRequire(node) {
