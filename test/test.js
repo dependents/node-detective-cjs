@@ -44,6 +44,12 @@ test('returns the dependencies of a main require CJS module', () => {
   assert.equal(deps.length, 2);
 });
 
+test('skips require.main.require calls with non-literal arguments', () => {
+  const deps = detective('var a = require.main.require(foo());');
+  assert.equal(deps.length, 0);
+  assert.equal(deps.includes(undefined), false);
+});
+
 test('excludes requires based on variable values', () => {
   const deps = detective('var a = require("./a");\n var b = "foo" + ".js";;\n var c = require(b);');
 

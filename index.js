@@ -31,7 +31,10 @@ export default function detective(content, options = {}) {
         }
       }
     } else if (isMainScopedRequire(node)) {
-      dependencies.push(extractDependencyFromMainRequire(node));
+      const result = extractDependencyFromMainRequire(node);
+      if (result) {
+        dependencies.push(result);
+      }
     }
   });
 
